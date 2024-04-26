@@ -1,19 +1,6 @@
-# Simple pygame program
-def install_and_import(package):
-    import importlib
-    try:
-        importlib.import_module(package)
-    except ImportError:
-        import pip
-        pip.main(['install', package])
-    finally:
-        globals()[package] = importlib.import_module(package)
 
+# Import and initialize the pygame & pygame_widgets libraries
 
-install_and_import('pygame')
-install_and_import('pygame_widgets')
-
-# Import and initialize the pygame library
 import pygame
 import pygame_widgets
 
