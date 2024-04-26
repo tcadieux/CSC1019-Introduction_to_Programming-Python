@@ -12,7 +12,7 @@ pygame.init()
 
  # Function to write RGB in format r,g,b
 def printLabel(): 
-    print(f'rgb({r},{g},{b})   hex: {r_hex}{g_hex}{b_hex}')
+    print(f'rgb({r},{g},{b})   hex: {r_hex}{g_hex}{b_hex},   compliment rgb({r_complimentary},{b_complimentary},{g_complimentary})')
 
 # Funtion to convert (r,g,b) (decimal) to Hex, including leading zeroes
 def decimal_to_hex(value):
@@ -21,6 +21,7 @@ def decimal_to_hex(value):
     
 
 win = pygame.display.set_mode((1000, 1000))
+
 
 
 red_slider = Slider(win, 100, 100, 300, 25, min=0, max=255, step=1)
@@ -62,8 +63,25 @@ while run:
     r_hex = decimal_to_hex(r)
     g_hex = decimal_to_hex(g)
     b_hex = decimal_to_hex(b)
+    
+    r_complimentary = (255-r)
+    g_complimentary = (255-g)
+    b_complimentary = (255-b)
 
-    win.fill((r, g, b))
+    win.fill((255, 255, 255))
+    # canvas = pygame.draw.rect(pygame.surface.Surface((10,20),(r,g,b)))
+
+
+    input_color_window = pygame.surface.Surface((150, 150))
+    input_fill = pygame.Surface.fill(input_color_window, (r, g, b))
+    
+    comp_color_window = pygame.surface.Surface((150, 150))
+    comp_fill = pygame.Surface.fill(comp_color_window, (r_complimentary, g_complimentary, b_complimentary))
+    
+    win.blit(input_color_window, (0, 400))
+    win.blit(comp_color_window, (150, 0))
+
+
 
     red_output.setText(r)
     green_output.setText(g)
@@ -71,10 +89,14 @@ while run:
     red_hex_output.setText(r_hex)
     green_hex_output.setText(g_hex)
     blue_hex_output.setText(b_hex)
+    
+    
+    
    
    
     printLabel() 
     decimal_to_hex(r)
+    print(r_complimentary, g_complimentary)
 
 
     pygame_widgets.update(events)
