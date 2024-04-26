@@ -7,22 +7,43 @@ import pygame_widgets
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
 
+
 pygame.init()
+
+ # Function to write RGB in format r,g,b
+def printLabel(): 
+    print(f'rgb({r},{g},{b})   hex: {r_hex}{g_hex}{b_hex}')
+
+# Funtion to convert (r,g,b) (decimal) to Hex, including leading zeroes
+def decimal_to_hex(value):
+    return('{:02X}'.format(value))
+
+    
+
 win = pygame.display.set_mode((1000, 1000))
 
-red_slider = Slider(win, 100, 100, 300, 50, min=0, max=255, step=1)
+
+red_slider = Slider(win, 100, 100, 300, 25, min=0, max=255, step=1)
 red_output = TextBox(win, 450, 100, 75, 50, fontSize=30)
+red_hex_output = TextBox(win, 550, 100, 75, 50, fontSize=30)
 
-green_slider = Slider(win, 100, 200, 300, 50, min=0, max=255, step=1)
+green_slider = Slider(win, 100, 200, 300, 25, min=0, max=255, step=1)
 green_output = TextBox(win, 450, 200, 75, 50, fontSize=30)
+green_hex_output = TextBox(win, 550, 200, 75, 50, fontSize=30)
 
-blue_slider = Slider(win, 100, 300, 300, 50, min=0, max=255, step=1)
+blue_slider = Slider(win, 100, 300, 300, 25, min=0, max=255, step=1)
 blue_output = TextBox(win, 450, 300, 75, 50, fontSize=30)
+blue_hex_output = TextBox(win, 550, 300, 75, 50, fontSize=30)
 
 
-red_output.disable()  # Act as label instead of textbox
-green_output.disable()  # Act as label instead of textbox
-blue_output.disable()  # Act as label instead of textbox
+
+
+
+# Removes the cursers from display box  
+red_output.disable()  
+green_output.disable()  
+blue_output.disable()  
+
 
 
 run = True
@@ -33,41 +54,29 @@ while run:
             pygame.quit()
             run = False
             quit()
+            
+    r = red_slider.getValue() # in rgb
+    g = green_slider.getValue()
+    b = blue_slider.getValue()
     
+    r_hex = decimal_to_hex(r)
+    g_hex = decimal_to_hex(g)
+    b_hex = decimal_to_hex(b)
 
-    win.fill((red_slider.getValue(), green_slider.getValue(), blue_slider.getValue()))
+    win.fill((r, g, b))
 
-    red_output.setText(red_slider.getValue())
-    green_output.setText(green_slider.getValue())
-    blue_output.setText(blue_slider.getValue())
+    red_output.setText(r)
+    green_output.setText(g)
+    blue_output.setText(b)
+    red_hex_output.setText(r_hex)
+    green_hex_output.setText(g_hex)
+    blue_hex_output.setText(b_hex)
+   
+   
+    printLabel() 
+    decimal_to_hex(r)
 
 
     pygame_widgets.update(events)
     pygame.display.update()
-
-
-
-
-# # Set up the drawing window
-# screen = pygame.display.set_mode([500, 500])
-
-# # Run until the user asks to quit
-# running = True
-# while running:
-
-#     # Did the user click the window close button?
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             running = False
-
-#     # Fill the background with white
-#     screen.fill((255, 255, 255))
-
-#     # Draw a solid blue circle in the center
-#     pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
-
-#     # Flip the display
-#     pygame.display.flip()
-
-# # Done! Time to quit.
-# pygame.quit()
+    
