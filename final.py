@@ -3,6 +3,7 @@
 
 import pygame
 import pygame_widgets
+import random
 
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
@@ -18,10 +19,15 @@ def printLabel():
 def decimal_to_hex(value):
     return('{:02X}'.format(value))
 
-    
+# Define the window dimensions (width, height
+win_dimension = 1000
+margin = win_dimension / 20
 
-win = pygame.display.set_mode((1000, 1000))
+win = pygame.display.set_mode((win_dimension, win_dimension))
 
+r_random = random.randrange(0,255)
+g_random = random.randrange(0,255)
+b_random = random.randrange(0,255)
 
 
 red_slider = Slider(win, 100, 100, 300, 25, min=0, max=255, step=1)
@@ -60,16 +66,16 @@ while run:
     g = green_slider.getValue()
     b = blue_slider.getValue()
     
+    
     r_hex = decimal_to_hex(r)
     g_hex = decimal_to_hex(g)
     b_hex = decimal_to_hex(b)
     
-    r_complimentary = (255-r)
+    r_complimentary = (255-r) 
     g_complimentary = (255-g)
     b_complimentary = (255-b)
 
-    win.fill((255, 255, 255))
-    # canvas = pygame.draw.rect(pygame.surface.Surface((10,20),(r,g,b)))
+    win.fill((255, 255, 255)) #color the whole windoe
 
 
     input_color_window = pygame.surface.Surface((150, 150))
@@ -78,8 +84,13 @@ while run:
     comp_color_window = pygame.surface.Surface((150, 150))
     comp_fill = pygame.Surface.fill(comp_color_window, (r_complimentary, g_complimentary, b_complimentary))
     
-    win.blit(input_color_window, (0, 400))
-    win.blit(comp_color_window, (150, 0))
+    rand_color_window = pygame.surface.Surface((150, 150))
+    rand_fill = pygame.Surface.fill(rand_color_window, (r_random, g_random, b_random))
+    
+    win.blit(input_color_window, (150, 400))
+    win.blit(comp_color_window, (150, 200))
+    win.blit(rand_color_window, (150, 0))
+
 
 
 
@@ -94,9 +105,8 @@ while run:
     
    
    
-    printLabel() 
-    decimal_to_hex(r)
-    print(r_complimentary, g_complimentary)
+    # printLabel() 
+    # decimal_to_hex(r)
 
 
     pygame_widgets.update(events)
