@@ -41,7 +41,6 @@ b = 2
 # print(color_list[r] + compliment_list[r])
 print(color_list[r])
 print(compliment_list[r])
-print(hex_list[r])
 # print(hex_compliment_list[0])
 
 
