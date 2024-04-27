@@ -9,9 +9,6 @@ def random_color():
     return random.randint(0,255), random.randint(0,255), random.randint(0,255)
 
 
-
-
-
 color_list = [red, green, blue]
 compliment_list = []
 hex_list = []
@@ -25,6 +22,7 @@ for item in color_list:
     hex = '{:02X}'.format(item)
     hex_list.append(hex)
     
+
     
 # for comp in color_list: # need to convert to hex
     # compli = 255-comp
@@ -39,8 +37,7 @@ b = 2
 # print(compliment_list[r]) 
 
 # print(color_list[r] + compliment_list[r])
-print(color_list[r])
+print(f'{color_list[r]}, {color_list[g]}, {color_list[b]}')
 print(compliment_list[r])
-# print(hex_compliment_list[0])
 
 
