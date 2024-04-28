@@ -14,6 +14,7 @@ A basic UI built with Pygame to select colors using sliders for Red, Green, and 
 ### Reference Materials:
 In addition to class materials, the following sources were utilized:
 - [Pygame](https://www.pygame.org/news) - 
-- [Pygame Widgets](https://pygamewidgets.readthedocs.io/en/stable/) - 
+- [Pygame Widgets](https://pygamewidgets.readthedocs.io/en/stable/)
+- [RapidTables](https://www.rapidtables.com/web/color/RGB_Color.html) - Web Color Refrences
 
 
