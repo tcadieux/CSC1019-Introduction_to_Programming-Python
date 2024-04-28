@@ -111,12 +111,13 @@ while run:
             pygame.quit()
             run = False
             quit()
-            
+      
+# Define the color values based on the position of the sliders      
     red = red_slider.getValue() # 0 - 255
     green = green_slider.getValue()
     blue = blue_slider.getValue()
 
-
+# Create the lists for color conversions
     color_list = [red, green, blue]
     compliment_list = []
     hex_list = []
@@ -156,7 +157,6 @@ while run:
     red_output.setText(red)
     green_output.setText(green)
     blue_output.setText(blue)
-
 
 
     pygame_widgets.update(events)
