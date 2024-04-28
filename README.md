@@ -25,19 +25,19 @@ A basic UI built with Pygame to select colors using sliders for Red, Green, and 
 
 #### Data Types Used
 
-- Lists
-    color_list = []
-    compliment_list = []
-    hex_list = []
-    hex_compliment_list = []
+- Lists  
+    color_list = []  
+    compliment_list = []  
+    hex_list = []  
+    hex_compliment_list = []  
 
-- Intgers
-    slider_height = 20
-    slider_width = 250
+- Intgers  
+    slider_height = 20  
+    slider_width = 250  
 
 - String
     text='Reset' 
-    
+
 
 
 
