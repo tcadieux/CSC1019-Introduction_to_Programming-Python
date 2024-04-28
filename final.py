@@ -1,5 +1,10 @@
+########################################################################
+# CSC 1019 Final Project
+# Last Updated: April 27, 2024
+# Description: A simple GUI using pygame to output color codes in RGB format, and then convert to HEX. Additonal features include
+########################################################################
 
-# Import and initialize the pygame & pygame_widgets libraries
+# Import and initialize the required libraries
 
 import pygame
 import pygame_widgets
@@ -10,36 +15,32 @@ from pygame_widgets.textbox import TextBox
 from pygame_widgets.button import Button
 
 
-
 pygame.init()
-
-
- # Function to write RGB in format r,g,b
 
 
 # Funtion to convert (r,g,b) (decimal) to Hex, including leading zeroes
 def decimal_to_hex(value):
     return('{:02X}'.format(value))
 
+# Function to set random values for sliders
 def set_random_color():
     red_slider.setValue(random.randrange(0,255))
     green_slider.setValue(random.randrange(0,255))
     blue_slider.setValue(random.randrange(0,255))
     
+# Function to reset values for sliders (128)
 def reset_color():
     red_slider.setValue(128)
     green_slider.setValue(128)
     blue_slider.setValue(128)
     
-    
-    
-
+   
 # Define the window dimensions (width, height
 win_dimension = 1000
 win = pygame.display.set_mode((win_dimension, win_dimension))
 
 
-# Slider Dimensions
+# Item Dimensions
 padding = 50
 slider_height = 20
 slider_width = 250
@@ -49,8 +50,7 @@ textbox_height = 40
 font_size = 25
 color_window_size = (3*padding)+(3*slider_height)-30
 
-# Slider Creation
-    
+# Slider Creation  
 red_slider = Slider(win, padding, padding, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
 
 green_slider = Slider(win, padding, (2*padding)+slider_height, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
@@ -59,7 +59,6 @@ blue_slider = Slider(win, padding, (3*padding)+(2*slider_height), slider_width, 
 
 
 # Slider Output box Creation
-
 red_output = TextBox(win, (2*padding)+slider_width, padding-10, textbox_width, textbox_height, fontSize=font_size)
 
 green_output = TextBox(win, (2*padding)+slider_width, (2*padding)+slider_height-10, textbox_width, textbox_height, fontSize=font_size)
@@ -72,6 +71,7 @@ red_output.disable()
 green_output.disable()  
 blue_output.disable()  
 
+# Button to call the Random function
 random_button = Button(
     win,  # Surface to place button on
     padding,  # X-coordinate of top left corner
@@ -83,14 +83,11 @@ random_button = Button(
     text='Random',  # Text to display
     fontSize=50,  # Size of font
     margin=20,  # Minimum distance between text/image and edge of button
-    # inactiveColour=(200, 50, 0),  # Colour of button when not being interacted with
-    # hoverColour=(150, 0, 0),  # Colour of button when being hovered over
-    # pressedColour=(0, 200, 20),  # Colour of button when being clicked
-    radius=20,  # Radius of border corners (leave empty for not curved)
+    radius=10,  # Radius of border corners (leave empty for not curved)
     onClick=lambda: set_random_color()  # Function to call when clicked on
 )
 
-
+# Button to call the Reset function
 reset_button = Button(
     win,  # Surface to place button on
     padding,  # X-coordinate of top left corner
@@ -100,11 +97,11 @@ reset_button = Button(
     text='Reset',  # Text to display
     fontSize=50,  # Size of font
     margin=20,  # Minimum distance between text/image and edge of button
-    radius=20,  # Radius of border corners (leave empty for not curved)
+    radius=10,  # Radius of border corners (leave empty for not curved)
     onClick=lambda: reset_color()  # Function to call when clicked on
 )
 
-
+######### Run the main loop #####################################
 
 run = True
 while run:
