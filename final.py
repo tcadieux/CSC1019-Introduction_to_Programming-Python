@@ -5,7 +5,6 @@
 ########################################################################
 
 # Import and initialize the required libraries
-
 import pygame
 import pygame_widgets
 import random
@@ -79,8 +78,6 @@ random_button = Button(
     (color_window_size + 2*padding),  # Y-coordinate of top left corner
     slider_width,  # Width
     textbox_height*2,  # Height
-
-    # Optional Parameters
     text='Random',  # Text to display
     fontSize=50,  # Size of font
     margin=20,  # Minimum distance between text/image and edge of button
@@ -142,6 +139,7 @@ while run:
     b_complimentary = (255-blue)
 
     win.fill((255, 255, 255)) #color the whole windoe
+
 
 
     input_color_window = pygame.surface.Surface((color_window_size, color_window_size))
