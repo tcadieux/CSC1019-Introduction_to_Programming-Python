@@ -12,6 +12,7 @@ import random
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
 from pygame_widgets.button import Button
+from pygame_widgets.dropdown import Dropdown
 
 
 pygame.init()
@@ -34,6 +35,24 @@ def reset_color():
     green_slider.setValue(128)
     blue_slider.setValue(128)
     
+def select_color():
+    red_slider.setValue(dropdown.getSelected()[0])
+    green_slider.setValue(dropdown.getSelected()[1])
+    blue_slider.setValue(dropdown.getSelected()[2])
+    
+color_dict = {
+    "Black": (0,0,0),
+    "White": (255,255,255),
+    "Red": (255,0,0),
+    "Green": (0,255,0),
+    "Blue": (0,0,255),
+    "Yellow": (255,255,0),
+    "Cyan": (0,255,255),
+    "Magenta": (255,0,255),
+    "Navy": (0,0,128),
+    "Purple": (128,0,128),
+}
+
    
 # Define the window dimensions (width, height
 win_dimension = 1000
@@ -99,6 +118,39 @@ reset_button = Button(
     onClick=lambda: reset_color()  # Function to call when clicked on
 )
 
+# Dropdown to select colors from Dict
+dropdown = Dropdown(
+    win,  # Surface to place button on
+    400,  # X-coordinate of top left corner
+    (color_window_size + 2*padding),    slider_width,  # Width
+    textbox_height*2,  # Height
+    name='Select Color: ',
+    choices=[
+        *color_dict.keys()
+    ],
+    values=[*color_dict.values()], 
+    fontSize=50,  # Size of font
+    margin=20,  # Minimum distance between text/image and edge of button
+    borderRadius=10, 
+
+)
+
+
+
+
+# Button to Select from drop down
+select_button = Button(
+    win,  # Surface to place button on
+    400,  # X-coordinate of top left corner
+    (color_window_size + 3*padding) + (textbox_height*2),  # Y-coordinate of top left corner
+    slider_width,  # Width
+    textbox_height*2,  # Height
+    text='Select',  # Text to display
+    fontSize=50,  # Size of font
+    margin=20,  # Minimum distance between text/image and edge of button
+    radius=10,  # Radius of border corners (leave empty for not curved)
+    onClick=select_color  # Function to call when clicked on
+)
 
 
 ######### Run the main loop #####################################
