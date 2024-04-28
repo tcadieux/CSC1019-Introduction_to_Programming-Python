@@ -7,6 +7,7 @@ import random
 
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
+from pygame_widgets.button import Button
 
 
 
@@ -14,52 +15,95 @@ pygame.init()
 
 
  # Function to write RGB in format r,g,b
-def printLabel(): 
-    print(f'rgb({r},{g},{b})   hex: {r_hex}{g_hex}{b_hex},   compliment rgb({r_complimentary},{b_complimentary},{g_complimentary})')
+
 
 # Funtion to convert (r,g,b) (decimal) to Hex, including leading zeroes
 def decimal_to_hex(value):
     return('{:02X}'.format(value))
 
+def set_random_color():
+    red_slider.setValue(random.randrange(0,255))
+    green_slider.setValue(random.randrange(0,255))
+    blue_slider.setValue(random.randrange(0,255))
+    
+def reset_color():
+    red_slider.setValue(128)
+    green_slider.setValue(128)
+    blue_slider.setValue(128)
+    
+    
+    
+
 # Define the window dimensions (width, height
 win_dimension = 1000
-margin = win_dimension / 20
-
 win = pygame.display.set_mode((win_dimension, win_dimension))
 
-r_random = random.randrange(0,255)
-g_random = random.randrange(0,255)
-b_random = random.randrange(0,255)
 
-
+# Slider Dimensions
 padding = 50
 slider_height = 20
-slider_width = 300
+slider_width = 250
 handle_radius  = 15
 textbox_width =  75
 textbox_height = 40
 font_size = 25
+color_window_size = (3*padding)+(3*slider_height)-30
 
-
+# Slider Creation
+    
 red_slider = Slider(win, padding, padding, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
+
+green_slider = Slider(win, padding, (2*padding)+slider_height, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
+
+blue_slider = Slider(win, padding, (3*padding)+(2*slider_height), slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
+
+
+# Slider Output box Creation
+
 red_output = TextBox(win, (2*padding)+slider_width, padding-10, textbox_width, textbox_height, fontSize=font_size)
-red_hex_output = TextBox(win, 550, 100, 75, 50, fontSize=25)
 
-green_slider = Slider(win, padding, 200, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
-green_output = TextBox(win, 450, 200, 75, 50, fontSize=30)
-green_hex_output = TextBox(win, 550, 200, 75, 50, fontSize=30)
+green_output = TextBox(win, (2*padding)+slider_width, (2*padding)+slider_height-10, textbox_width, textbox_height, fontSize=font_size)
 
-blue_slider = Slider(win, padding, 300, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
-blue_output = TextBox(win, 450, 300, 75, 50, fontSize=30)
-blue_hex_output = TextBox(win, 550, 300, 75, 50, fontSize=30)
+blue_output = TextBox(win, (2*padding)+slider_width, (3*padding)+(2*slider_height)-10, textbox_width, textbox_height, fontSize=font_size)
 
 
-
-
-# Removes the cursers from display box  
+# Removes the cursers from display boxes
 red_output.disable()  
 green_output.disable()  
 blue_output.disable()  
+
+random_button = Button(
+    win,  # Surface to place button on
+    padding,  # X-coordinate of top left corner
+    (color_window_size + 2*padding),  # Y-coordinate of top left corner
+    slider_width,  # Width
+    textbox_height*2,  # Height
+
+    # Optional Parameters
+    text='Random',  # Text to display
+    fontSize=50,  # Size of font
+    margin=20,  # Minimum distance between text/image and edge of button
+    # inactiveColour=(200, 50, 0),  # Colour of button when not being interacted with
+    # hoverColour=(150, 0, 0),  # Colour of button when being hovered over
+    # pressedColour=(0, 200, 20),  # Colour of button when being clicked
+    radius=20,  # Radius of border corners (leave empty for not curved)
+    onClick=lambda: set_random_color()  # Function to call when clicked on
+)
+
+
+reset_button = Button(
+    win,  # Surface to place button on
+    padding,  # X-coordinate of top left corner
+    (color_window_size + 3*padding) + (textbox_height*2),  # Y-coordinate of top left corner
+    slider_width,  # Width
+    textbox_height*2,  # Height
+    text='Reset',  # Text to display
+    fontSize=50,  # Size of font
+    margin=20,  # Minimum distance between text/image and edge of button
+    radius=20,  # Radius of border corners (leave empty for not curved)
+    onClick=lambda: reset_color()  # Function to call when clicked on
+)
+
 
 
 run = True
@@ -71,52 +115,51 @@ while run:
             run = False
             quit()
             
-    r = red_slider.getValue() # in rgb
-    g = green_slider.getValue()
-    b = blue_slider.getValue()
+    red = red_slider.getValue() # 0 - 255
+    green = green_slider.getValue()
+    blue = blue_slider.getValue()
 
+
+    color_list = [red, green, blue]
+    compliment_list = []
+    hex_list = []
+    hex_compliment_list = []
+
+    for item in color_list:
+        compliment = 255-item
+        compliment_list.append(compliment)
+
+    for item in color_list:
+        hex = '{:02X}'.format(item)
+        hex_list.append(hex)
     
     
-    r_hex = decimal_to_hex(r)
-    g_hex = decimal_to_hex(g)
-    b_hex = decimal_to_hex(b)
+    r_hex = decimal_to_hex(red)
+    g_hex = decimal_to_hex(green)
+    b_hex = decimal_to_hex(blue)
     
-    r_complimentary = (255-r) 
-    g_complimentary = (255-g)
-    b_complimentary = (255-b)
+    r_complimentary = (255-red) 
+    g_complimentary = (255-green)
+    b_complimentary = (255-blue)
 
     win.fill((255, 255, 255)) #color the whole windoe
 
 
-    input_color_window = pygame.surface.Surface((150, 150))
-    input_fill = pygame.Surface.fill(input_color_window, (r, g, b))
+    input_color_window = pygame.surface.Surface((color_window_size, color_window_size))
+    input_fill = pygame.Surface.fill(input_color_window, (red, green, blue))
     
-    comp_color_window = pygame.surface.Surface((150, 150))
+    comp_color_window = pygame.surface.Surface((color_window_size, color_window_size))
     comp_fill = pygame.Surface.fill(comp_color_window, (r_complimentary, g_complimentary, b_complimentary))
     
-    rand_color_window = pygame.surface.Surface((150, 150))
-    rand_fill = pygame.Surface.fill(rand_color_window, (r_random, g_random, b_random))
     
-    win.blit(input_color_window, (150, 400))
-    win.blit(comp_color_window, (150, 200))
-    win.blit(rand_color_window, (150, 0))
+    win.blit(input_color_window, ((3*padding)+slider_width+textbox_width, padding-10))
+    win.blit(comp_color_window, ((4*padding)+slider_width+textbox_width+color_window_size, padding-10))
 
 
+    red_output.setText(red)
+    green_output.setText(green)
+    blue_output.setText(blue)
 
-
-    red_output.setText(r)
-    green_output.setText(g)
-    blue_output.setText(b)
-    red_hex_output.setText(r_hex)
-    green_hex_output.setText(g_hex)
-    blue_hex_output.setText(b_hex)
-    
-    
-    
-   
-   
-    # printLabel() 
-    # decimal_to_hex(r)
 
 
     pygame_widgets.update(events)
