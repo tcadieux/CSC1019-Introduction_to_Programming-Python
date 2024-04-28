@@ -16,6 +16,7 @@ from pygame_widgets.button import Button
 
 
 pygame.init()
+pygame.display.set_caption("RGB to HEX Color Tool")
 
 
 # Funtion to convert (r,g,b) (decimal) to Hex, including leading zeroes
