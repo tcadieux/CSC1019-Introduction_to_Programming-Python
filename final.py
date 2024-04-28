@@ -99,6 +99,8 @@ reset_button = Button(
     onClick=lambda: reset_color()  # Function to call when clicked on
 )
 
+
+
 ######### Run the main loop #####################################
 
 run = True
