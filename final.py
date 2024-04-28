@@ -54,7 +54,6 @@ blue_output = TextBox(win, 450, 300, 75, 50, fontSize=30)
 blue_hex_output = TextBox(win, 550, 300, 75, 50, fontSize=30)
 
 
-print(type(blue_slider))
 
 
 # Removes the cursers from display box  
