@@ -11,7 +11,7 @@ Spring 2024: Final Project
 ### Summary
 A basic UI built with Pygame to select colors using sliders for Red, Green, and Blue values, as well as convert the RGB values to HEX, and display the complimentaty color. Additional features include 'Reset' and 'Random' buttons
 
-## Includes
+## Included Requirements
 
 #### Functions:
 - decimal_to_hex(value)
@@ -26,17 +26,27 @@ A basic UI built with Pygame to select colors using sliders for Red, Green, and 
 #### Data Types Used
 
 ##### Lists  
-- color_list = []  
-- compliment_list = []  
-- hex_list = []  
-- hex_compliment_list = []  
+`color_list = []`  
+`compliment_list = []`  
+`hex_list = []  `  
+`hex_compliment_list = []  `  
 
 ##### Intgers  
-- slider_height = 20  
-- slider_width = 250  
+`slider_height = 20`  
+`slider_width = 250`
 
 ##### String
-- text='Reset' 
+`text='Reset'`
+
+#### Dictionary
+```
+color_dict = {
+    "Black": (0,0,0),
+    ......
+    "Navy": (0,0,128),
+    "Purple": (128,0,128),
+}
+```
 
 
 
