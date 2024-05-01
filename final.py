@@ -34,7 +34,8 @@ def reset_color():
     red_slider.setValue(128)
     green_slider.setValue(128)
     blue_slider.setValue(128)
-    
+
+
 def select_color():
     red_slider.setValue(dropdown.getSelected()[0])
     green_slider.setValue(dropdown.getSelected()[1])
