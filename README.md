@@ -11,6 +11,20 @@ Spring 2024: Final Project
 ### Summary
 A basic UI built with Pygame to select colors using sliders for Red, Green, and Blue values, as well as convert the RGB values to HEX, and display the complimentaty color. Additional features include 'Reset' and 'Random' buttons
 
+## Usage
+There are several ways to interact with the color picker. 
+- Using the RGB sliders, select vales for RGB values (0-255)
+
+- Using the RANDOM button: Random button will set a random value for each of the sliders
+
+- Using the SELECT COLOR: dropdown menu, then pressing "Select" will pick one of the pre-defined values for the selected color
+
+
+The "Selected Color" window will display the input color (by slider value, by random input, or by selecting from the drop-down), as well as the RGB and HEX values; 
+
+The "Complimentaty Color" window will display this color, as well as the RGB and HEX values
+
+
 ## Included Requirements
 
 #### Functions:

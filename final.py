@@ -60,6 +60,8 @@ win_dimension = 1000
 win = pygame.display.set_mode((win_dimension, win_dimension))
 
 
+
+
 # Item Dimensions
 padding = 50
 slider_height = 20
@@ -69,6 +71,29 @@ textbox_width =  75
 textbox_height = 40
 font_size = 25
 color_window_size = (3*padding)+(3*slider_height)-30
+
+# Add Labels to the window
+color_label = TextBox(win,((3*padding)+slider_width+textbox_width),10,color_window_size,textbox_height/1.5,fontSize=15)
+comp_color_label = TextBox(win,((4*padding)+slider_width+textbox_width+color_window_size),10,color_window_size,textbox_height/1.5,fontSize=15)
+
+color_label.setText("Selected Color")
+comp_color_label.setText("Complimentary Color")
+
+# Color Code Labels for selected color window
+rgb_color_label = TextBox(win,((3*padding)+slider_width+textbox_width),(padding+color_window_size),color_window_size,textbox_height,fontSize=15)
+
+hex_color_label = TextBox(win,((3*padding)+slider_width+textbox_width),(color_window_size),color_window_size,textbox_height,fontSize=15)
+
+# Color Code Labels for complimentaty color window
+comp_rgb_color_label = TextBox(win,((4*padding)+slider_width+textbox_width+color_window_size),(padding+color_window_size),color_window_size,textbox_height,fontSize=15)
+
+comp_hex_color_label = TextBox(win,((4*padding)+slider_width+textbox_width+color_window_size),(color_window_size),color_window_size,textbox_height,fontSize=15)
+
+
+
+
+
+
 
 # Slider Creation  
 red_slider = Slider(win, padding, padding, slider_width, slider_height, min=0, max=255, step=1, handleRadius = handle_radius)
@@ -192,8 +217,12 @@ while run:
     r_complimentary = (255-red) 
     g_complimentary = (255-green)
     b_complimentary = (255-blue)
+    
+    r_hex_complimentary = decimal_to_hex(r_complimentary)
+    g_hex_complimentary = decimal_to_hex(g_complimentary)
+    b_hex_complimentary = decimal_to_hex(b_complimentary)
 
-    win.fill((255, 255, 255)) #color the whole windoe
+    win.fill((255, 255, 255)) #color the whole window white
 
 
 
@@ -211,6 +240,13 @@ while run:
     red_output.setText(red)
     green_output.setText(green)
     blue_output.setText(blue)
+    
+    rgb_color_label.setText(f'RGB({red},{green},{blue})')
+    hex_color_label.setText(f'#{r_hex}{g_hex}{b_hex}')
+
+    comp_rgb_color_label.setText(f'RGB({r_complimentary},{g_complimentary},{b_complimentary})')
+    comp_hex_color_label.setText(f'#{r_hex_complimentary}{g_hex_complimentary}{b_hex_complimentary}')
+
 
 
     pygame_widgets.update(events)
