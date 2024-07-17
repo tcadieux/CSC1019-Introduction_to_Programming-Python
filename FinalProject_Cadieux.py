@@ -1,7 +1,8 @@
 ########################################################################
 # CSC 1019 Final Project
 # Last Updated: April 27, 2024
-# Description: A simple GUI using pygame to output color codes in RGB format, and then convert to HEX. Additonal features include
+# Description: A simple GUI using pygame to output color codes in 
+# RGB format, and then convert to HEX. Additonal features include
 ########################################################################
 
 # Import and initialize the required libraries
